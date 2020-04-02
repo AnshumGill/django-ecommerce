@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+    <h1 class="display-4">Register</h1>
+    <form method="POST" class="register-form"> {% csrf_token %}
+      {% for fields in form %}
+        <div class="form-group">
+            {{ fields }}
+        </div>
+      {% endfor %}
+      <div class="form-group">
+          <p>
+            <small class="form-text text-muted">
+                Passwords must be atleast 8 characters long, must contain letters and numbers.
+            </small>
+          </p>
+        </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

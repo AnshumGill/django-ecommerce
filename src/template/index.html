@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron" style="background: #fae3d9;">
+	<h1 class="display-4">Welcome to Box of Happiness</h1>
+	<p class="lead">
+		To order online and get started view our Products.
+	</p>
+</div>
+<!--{% if request.user.is_authenticated %}
+	<h1>Hello, logged in user</h1>
+<p>
+  {{ premium }}
+</p>
+{% endif %}-->
+<div class="container">
+	<h2>Some of our featured products</h2>
+	{% include 'base/featured-products.html' with product_list=products %}
+</div>
+
+
+
+{% endblock %}

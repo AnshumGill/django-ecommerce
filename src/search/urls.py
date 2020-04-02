@@ -1,0 +1,8 @@
+from django.urls import path
+from .views import (
+    SearchProductListView,
+)
+
+urlpatterns = [
+    path('',SearchProductListView,name="query"),
+]

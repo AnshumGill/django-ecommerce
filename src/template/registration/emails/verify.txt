@@ -1,0 +1,8 @@
+Hello {{ user }},
+
+Please activate your account by clicking the following link: 
+
+{{ path }}
+
+Thank you,
+Box of Happiness

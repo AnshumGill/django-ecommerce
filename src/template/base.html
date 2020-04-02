@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% include 'base/css.html' %}
+        <style type="text/css">
+            ul.errorlist{
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column h-100">
+        <header>
+            {% include 'base/navbar.html' %}
+        </header>
+        <main role="main" class="flex-shrink-0">
+            <div class="container pb-2">
+              {% if messages %}
+                {% for message in messages %}
+                    <div class="container col-xs-12 col-md-6 alert {{ message.tags }} alert-dismissible fade show messages mx-auto" role="alert">
+                        <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            {{ message }}
+                        </span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+              {% endif %}
+              {% block content %}{% endblock %}
+            </div>
+        </main>
+        
+
+        {% include 'base/footer.html' %}
+        {% include 'base/js.html' %}
+    </body>
+</html>

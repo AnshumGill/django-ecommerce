@@ -1,0 +1,47 @@
+<!-- <form action="/cart/checkout/success" method="POST">{% csrf_token %}
+<script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_t7irdtYoVGUAg1"
+    data-amount="500000"
+    data-buttontext="Pay with Razorpay"
+    data-name="Box of Happiness"
+    data-description="Purchase Description"
+    data-image="https://your-awesome-site.com/your_logo.jpg"
+    data-prefill.name="Anshum Gill"
+    data-prefill.email="anshumgill@gmail.com"
+    data-theme.color="#F37254"
+></script>
+<input type="hidden" value="Hidden Element" name="hidden">
+</form> -->
+<form class="form" method="POST" action="">
+  <button type="submit" class="btn btn-info" id="rzp-button1">Pay</button>
+</form>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_t7irdtYoVGUAg1",
+    "amount": "50000", // 2000 paise = INR 20
+    "name": "Box of Happiness",
+    "description": "Purchase Description",
+    "image": "/your_logo.png",
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+    },
+    "prefill": {
+        "name": "Anshum Gill",
+        "email": "anshumgill@gmail.com"
+    },
+    "notes": {
+        "address": "Hello World"
+    },
+    "theme": {
+        "color": "#F37254"
+    }
+};
+var rzp1 = new Razorpay(options);
+
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>

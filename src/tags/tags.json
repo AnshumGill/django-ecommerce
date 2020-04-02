@@ -1,0 +1,179 @@
+[
+{
+    "model": "tags.producttag",
+    "pk": 1,
+    "fields": {
+        "title": "shoe",
+        "slug": "shoe",
+        "timestamp": "2018-12-16T12:10:07.107Z",
+        "products": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            15
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 2,
+    "fields": {
+        "title": "hoodie",
+        "slug": "hoodie",
+        "timestamp": "2018-12-16T12:12:02.873Z",
+        "products": [
+            4,
+            11,
+            12,
+            13,
+            14
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 3,
+    "fields": {
+        "title": "sweatshirt",
+        "slug": "sweatshirt",
+        "timestamp": "2018-12-16T12:12:19.111Z",
+        "products": [
+            4,
+            11,
+            12,
+            13,
+            14
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 4,
+    "fields": {
+        "title": "slides",
+        "slug": "slides",
+        "timestamp": "2018-12-16T12:12:25.547Z",
+        "products": [
+            15
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 5,
+    "fields": {
+        "title": "gucci",
+        "slug": "gucci",
+        "timestamp": "2018-12-16T12:12:35.388Z",
+        "products": [
+            14,
+            15
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 6,
+    "fields": {
+        "title": "fendi",
+        "slug": "fendi",
+        "timestamp": "2018-12-16T12:12:44.286Z",
+        "products": [
+            13
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 7,
+    "fields": {
+        "title": "heron preston",
+        "slug": "heron-preston",
+        "timestamp": "2018-12-16T12:13:33.897Z",
+        "products": [
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 8,
+    "fields": {
+        "title": "givenchy",
+        "slug": "givenchy",
+        "timestamp": "2018-12-16T12:13:45.195Z",
+        "products": [
+            11,
+            12
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 9,
+    "fields": {
+        "title": "adidas",
+        "slug": "adidas",
+        "timestamp": "2018-12-16T12:13:54.132Z",
+        "products": [
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 10,
+    "fields": {
+        "title": "pharrell williams",
+        "slug": "pharrell-williams",
+        "timestamp": "2018-12-16T12:14:15.101Z",
+        "products": [
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 11,
+    "fields": {
+        "title": "balenciaga",
+        "slug": "balenciaga",
+        "timestamp": "2018-12-16T12:14:21.965Z",
+        "products": [
+            6
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 12,
+    "fields": {
+        "title": "yeezy",
+        "slug": "yeezy",
+        "timestamp": "2018-12-16T12:14:29.702Z",
+        "products": [
+            7
+        ]
+    }
+},
+{
+    "model": "tags.producttag",
+    "pk": 13,
+    "fields": {
+        "title": "sweatpants",
+        "slug": "sweatpants",
+        "timestamp": "2018-12-16T12:14:36.860Z",
+        "products": [
+            5
+        ]
+    }
+}
+]

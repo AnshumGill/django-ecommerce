@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--
+{% if address_form.is_valid %}
+  {% url 'checkout_address_create' as checkout_address_create %}
+{% endif %}-->
+
+{% if not billing_profile %}
+  <div class="row">
+    <div class="col-12 col-md-6">
+        <p class="lead">
+          Login
+        </p>
+          <div class="row">
+              <div class="col-6">
+                {% include 'base/loginform.html' with form=login_form next_url=request.build_absolute_uri %}
+              </div>
+          </div>
+
+    </div>
+    <div class="col-12 col-md-6">
+        <p class="lead">
+          Continue as Guest
+        </p>
+          <div class="row">
+            <div class="col-6">
+              {% url 'guest_register' as guest_register_url %}
+              {% include 'base/guestform.html' with form=guest_form next_url=request.build_absolute_uri action_url=guest_register_url %}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <p class="lead">Or, register <a href="/register/" style="text-decoration: none;">here</a></p>
+            </div>
+          </div>
+    </div>
+  </div>
+
+{% else %}
+  {% if not object.shipping_address %}
+    <div class="row">
+        <div class="col-12">
+            <p class="lead">
+                Shipping Address
+            </p>
+            <hr />
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <p class="lead">
+                Enter Address
+            </p>
+            {% url 'checkout_address_create' as checkout_address_create %}
+            {% include 'base/addressform.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_create address_type='shipping' %}
+        </div>
+        <div class="col-sm-12 col-md-6">
+					{% url 'checkout_address_reuse' as checkout_address_reuse %}
+          {% include 'base/prev_addresses.html' with address_qs=address_qs next_url=request.build_absolute_uri address_type='shipping' action_url=checkout_address_reuse %}
+        </div>
+
+    </div>
+
+  {% elif not object.billing_address %}
+    {% if request.user.is_authenticated %}
+      <div class="row">
+          <div class="col-12">
+              <p class="lead">
+                  Billing Address
+              </p>
+              <hr />
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <p class="lead">
+                Use this address
+            </p>
+  					{% url 'checkout_address_reuse' as checkout_address_reuse %}
+            {% include 'base/prev_addresses.html' with address_qs=address_qs next_url=request.build_absolute_uri address_type='billing' action_url=checkout_address_reuse %}
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <p class="lead">
+                Or enter a new address
+            </p>
+            {% url 'checkout_address_create' as checkout_address_create %}
+            {% include 'base/addressform.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_create address_type='billing' %}
+          </div>
+      </div>
+    {% else %}
+      <div class="row">
+          <div class="col-12">
+              <p class="lead">
+                  Billing Address
+              </p>
+              <hr />
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <p class="lead">
+                Enter Address
+            </p>
+            {% url 'checkout_address_create' as checkout_address_create %}
+            {% include 'base/addressform.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_create address_type='billing' %}
+          </div>
+      </div>
+    {% endif %}
+
+  {% else %}
+    <h2>Finalize Checkout</h2>
+    <hr />
+    <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>{{ object.order_id }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td><b>Cart Items</b></td>
+              <td>{{ object.cart.products.first }}</td>
+          </tr>
+          {% for product in object.cart.products.all %}
+            {% if not forloop.first %}
+            <tr>
+                <td></td>
+                <td>{{product}}</td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          <tr>
+              <td><b>Shipping Address</b></td>
+              <td>{{ object.shipping_address.get_address }}</td>
+          </tr>
+          <tr>
+              <td><b>Billing Address</b></td>
+              <td>{{ object.billing_address.get_address }}</td>
+          </tr>
+          <tr>
+              <td><b>Shipping Total</b></td>
+              <td>&#8377;{{ object.shipping_total }}</td>
+          </tr>
+          <tr>
+              <td><b>Total</b></td>
+              <td>&#8377;{{ object.total }}</td>
+          </tr>
+          <tr>
+            <td>
+                <button class="btn btn-info" id="rzp-button1">Pay</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      var options = {
+          "key": "rzp_test_t7irdtYoVGUAg1",
+          "amount": {{ object.total }}*100,
+          "name": "Box of Happiness",
+          "description": "{{ object.order_id }}",
+          "image": "/your_logo.png",
+          "handler": function (response){
+              var paymentid=response.razorpay_payment_id;
+              $.ajax({
+                type:"POST",
+                url:"/cart/checkout/success",
+                data:{
+                  payment_id:paymentid,
+                  order_id:"{{ object.order_id }}",
+                },
+                success: function(){
+                  window.location.href="/cart/checkout/success"
+                },
+                error: function(errorData){
+                  console.log(errorData)
+                  $.alert({
+                    title: "Oops!",
+                    content: "Some Error Occured. Please try again",
+                    theme: "material",
+                  })
+                }
+
+              })
+          },
+          "modal": {
+              "ondismiss": function(){}
+          },
+          "external": {
+            wallets: ['paytm']
+          },
+          "notes": {
+              "Mobile": "Mobile={{ object.billing_profile }}"
+          },
+          "theme": {
+              "color": "#F37254"
+          }
+      };
+      var rzp1 = new Razorpay(options);
+      document.getElementById('rzp-button1').onclick = function(e){
+          rzp1.open();
+          e.preventDefault();
+      };
+    </script>
+
+
+  {% endif %}
+{% endif %}
+
+{% endblock %}

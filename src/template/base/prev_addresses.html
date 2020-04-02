@@ -1,0 +1,39 @@
+{% if address_qs.exists %}
+  {% if address_type == "shipping" %}
+    <p class="lead">
+      Or use an existing one
+    </p>
+  {% endif %}
+  <form method="POST" action="{{ action_url }}">{% csrf_token %}
+    {% if form.errors %}
+      {% for field in form %}
+        {% for error in field.errors %}
+          <div class="alert alert-danger text-center">
+            {{ error|escape }}
+          </div>
+        {% endfor %}
+      {% endfor %}
+      <!--{% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <p>{{ error|escape }}</p>
+            </div>
+        {% endfor %}-->
+    {% endif %}
+		{% if next_url %}
+    	<input type='hidden' name='next' value='{{ next_url }}' />
+    {% endif %}
+
+		{% if address_type %}
+			<input type='hidden' name="address_type" value="{{ address_type }}" />
+		{% endif %}
+
+      {% for address in address_qs %}
+        <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="address-{{ address.id }}" name="shipping_address" value="{{ address.id }}" />
+            <label class="custom-control-label" for="address-{{ address.id }}">{{ address.address_line_1 }}<br/>{{address.city}},{{address.zip_code}}</label>
+        </div>
+      {% endfor %}
+        <button type="submit" class="btn btn-success my-3">Use Address</button>
+
+  </form>
+{% endif %}

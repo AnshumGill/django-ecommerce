@@ -1,0 +1,17 @@
+<div class="card mb-4">
+    <a href="{{instance.get_absolute_url}}" style="text-decoration:inherit;color:inherit;">
+        <div class="card-header" style="background: #fae3d9;"><h5 class="card-title">{{ instance.title }}</h5></div>
+        {% if instance.image %}
+            <img class="card-img-top" src="{{ instance.image.url }}" alt="{{ instance.title }}">
+        {% endif %}
+    </a>
+    <div class="card-body">
+        <!-- <h5 class="card-title">{{ instance.title }}</h5> -->
+        <p class="card-text">
+            {{instance.description|linebreaks|truncatewords:15}}
+        </p>
+        <h3 class="card-text">&#8377;{{instance.price}}</h3>
+        <a href="{{instance.get_absolute_url}}" class="btn btn-primary">View</a>
+        {% include 'base/update-cart.html' with product=instance cart=cart %}
+    </div>
+</div>

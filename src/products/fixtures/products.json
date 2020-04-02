@@ -1,0 +1,146 @@
+[
+{
+    "model": "products.products",
+    "pk": 4,
+    "fields": {
+        "title": "Heron Preston White NASA Hoodie",
+        "slug": "heron-preston-white-nasa-hoodie",
+        "description": "White long sleeves hooded sweatshirt inspired by Nasa. Graphic printed at front and sleeves. Red NASA embroidered at front. Crewneck collar. White strings.\r\n\r\nModel: Romeo wears size M \r\n\r\nHeight: 183 cm\r\nChest: 89 cm\r\nWaist: 73 cm\r\n\r\nMaterial: 100% Cotton\r\nColor: White Orange",
+        "price": "377.00",
+        "image": "products/15285934/15285934.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 5,
+    "fields": {
+        "title": "Heron Preston \u0421\u0422\u0418\u041b\u042c \"Style\" Sweatpants",
+        "slug": "heron-preston-style-sweatpants",
+        "description": "Black \u0421\u0422\u0418\u041b\u042c \"STYLE\"  sweatpants with logo patch and embroidered white logo at front. Text printed in white at front. Logo embroidered in orange and white at back. Logo patch at front.\r\n\r\nModel: Romeo wears size M\r\n\r\nHeight: 183 cm\r\nWaist: 73 cm\r\nHips: 80 cm\r\n\r\nMaterial: 100% Cotton\r\nColor: Black White",
+        "price": "247.00",
+        "image": "products/13336856/13336856.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 6,
+    "fields": {
+        "title": "Balenciaga Speed Trainers Black Shoe",
+        "slug": "balenciaga-speed-trainers-black-shoe",
+        "description": "\u2022 Knit sock\r\n\u2022 Balenciaga logo on the sock\r\n\u2022 White and Black textured sole\r\n\u2022 Memory sole technology\r\n\u2022 Shock absorber\r\n\u2022 Very light shoe : 240g\r\n\u2022 Embossed Balenciaga logo on the sole\r\n\u2022 10 mm / 0,39 inches arch\r\n\u2022 Made in Italy\r\nComposition: \r\nPolyamide\r\n\r\nProduct ID: 530349W05G01000",
+        "price": "725.00",
+        "image": "products/2070264/2070264.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 7,
+    "fields": {
+        "title": "adidas Originals Yeezy Boost 350 v2 Shoe",
+        "slug": "adidas-originals-yeezy-boost-350-v2-shoe",
+        "description": "The legendary adidas x Kanye West collaboration is supremely comfortable and has an edgy street style that will turn heads. The formfitting Primeknit upper is unlined and breathable, while the Clarino lining enhances performance longevity and prevents slip. Iconic adidas Boost midsole cushioning is ultra light and ultra responsive. Rubber outsole offers durability.\r\n\r\nFormfitting Primeknit upper is unlined and breathable.\r\nClarino lining to prevent slip.\r\nPremium suede arch support.\r\nAntimicrobial sockliner cover.\r\nFull-length internal Boost midsole cushioning is ultra light and ultra responsive.\r\nRubber outsole.",
+        "price": "220.00",
+        "image": "products/15630058/15630058.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 8,
+    "fields": {
+        "title": "PW HU Holi NMD BC Cream Shoe",
+        "slug": "pw-hu-holi-nmd-bc-cream-shoe",
+        "description": "Pharrell Williams Holi NMD Collection Blank Canvas",
+        "price": "444.00",
+        "image": "products/15157080/15157080.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 9,
+    "fields": {
+        "title": "PW HU Holi NMD MC \"Tie-Dye\" Shoe",
+        "slug": "pw-hu-holi-nmd-mc-tie-dye-shoe",
+        "description": "Pharrell Williams Holi NMD Collection Coral Chalk Shoe",
+        "price": "242.00",
+        "image": "products/20778802/20778802.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 10,
+    "fields": {
+        "title": "PW HU Holi NMD MC Equality Shoe",
+        "slug": "pw-hu-holi-nmd-mc-equality-shoe",
+        "description": "Pharrell Williams Holi NMD Collection Equality Shoe",
+        "price": "435.00",
+        "image": "products/3048570/3048570.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 11,
+    "fields": {
+        "title": "Givenchy Black Dragon Capricorn Logo Hoodie",
+        "slug": "givenchy-black-dragon-capricorn-logo-hoodie",
+        "description": "Long sleeve French terry hoodie in black. Drawstring at hood. Logo printed in blue at chest. Kangaroo pocket at waist. Multicolor graphic printed at sleeve. Tonal stitching.\r\n\r\n100% cotton. Made in Portugal.",
+        "price": "980.00",
+        "image": "products/26997022/26997022.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 12,
+    "fields": {
+        "title": "Givenchy Paris Contrasting Stitching Hoodie",
+        "slug": "givenchy-paris-contrasting-stitching-hoodie",
+        "description": "Black felpa hoodie with graphic cut-outs trimmed in white, large V and GIVENCHY PARIS signature embroidered in white on the front. Regular loose fit.\r\nProduct code: BM70H930AF-001\r\n\r\nSIZE & FIT\r\nRegular Fit\r\n\r\nModel wears a size S.\r\n\r\nModel size: chest 82cm, waist 75cm, hips 89cm, height 189cm.\r\n\r\nOTHER\r\nMaximum wash 30\u00b0C, delicate cycle\r\n\r\nIron at maximum soleplate temperature (110\u00b0C) without steam\r\n\r\nDo not tumble dry\r\n\r\nDo not bleach\r\n\r\nDo not dry clean",
+        "price": "765.00",
+        "image": "products/7128376/7128376.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 13,
+    "fields": {
+        "title": "Fendi Black cotton jersey sweatshirt",
+        "slug": "fendi-black-cotton-jersey-sweatshirt",
+        "description": "Oversized sweatshirt with hooded collar. Made of black cotton jersey. Bag Bugs eyes motif in tone-on-tone leather.\r\nMade in Italy",
+        "price": "1100.00",
+        "image": "products/32911792/32911792.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 14,
+    "fields": {
+        "title": "Gucci Technical jersey sweatshirt",
+        "slug": "gucci-technical-jersey-sweatshirt",
+        "description": "The sweatshirt continues to be a silhouette favored by Creative Director Alessandro Michele. The sportswear inspired style is made from a technical jersey fabric and trimmed with Gucci jacquard stripe along the sleeves. The sleeves can be removed using snaps along the shoulder seams, transitioning it to a sleeveless silhouette.\r\n\r\nBlack technical jersey\r\nGucci jacquard trim\r\nFixed hood\r\nSnaps at the shoulder seams to remove sleeves\r\n55% polyester and 45% cotton\r\nMade in Italy\r\nThe model is 6\u20191\u201d and is wearing size medium",
+        "price": "1250.00",
+        "image": "products/19110473/19110473.jpg",
+        "featured": false
+    }
+},
+{
+    "model": "products.products",
+    "pk": 15,
+    "fields": {
+        "title": "Gucci logo rubber slide sandal",
+        "slug": "gucci-logo-rubber-slide-sandal",
+        "description": "The feel of summer permeates the Pre-Fall 2018 collection. The Gucci vintage logo - originally inspired by retro prints from the '80s - is reworked in bright-hued rubber and presented on a series of colorful slide sandals.\r\n\r\nBlack rubber\r\nMen's\r\nEmbossed Gucci vintage logo\r\nMolded rubber footbed\r\nGucci logo embossed on the sole\r\n.6\" height\r\nMade in Italy",
+        "price": "250.00",
+        "image": "products/13745073/13745073.jpg",
+        "featured": false
+    }
+}
+]

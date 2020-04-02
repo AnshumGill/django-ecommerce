@@ -1,0 +1,6 @@
+<form action="" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="file" name="images" multiple>
+	<input type="submit" value="sumbit">
+</form>

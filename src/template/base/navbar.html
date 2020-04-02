@@ -1,0 +1,52 @@
+{% url 'index' as index_url %}
+{% url 'login' as login_url %}
+{% url 'logout' as logout_url %}
+{% url 'register' as register_url %}
+{% url 'contact' as contact_url %}
+{% url 'products:list' as product_list_url %}
+{% url 'cart:home' as cart_url %}
+{% url 'account:home' as account_url %}
+{% url 'marketing-pref' as email_settings %}
+{% url 'account:order' as order_url %}
+
+
+<nav class="navbar sticky-top navbar-expand-md navbar-light mb-3" style="background-color: #bbded6;">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'index' %}">Box of Happiness</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav" aria-controls="myNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNav">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link {% if request.path == index_url %}active{% endif %}" href="{{ index_url }}">Home{% if request.path == index_url %}<span class="sr-only">(current)</span>{% endif %}</a>
+        <a class="nav-item nav-link {% if request.path == contact_url %}active{% endif %}" href="{{ contact_url }}">Contact{% if request.path == contact_url %}<span class="sr-only">(current)</span>{% endif %}</a>
+        <a class="nav-item nav-link {% if request.path == product_list_url %}active{% endif %}" href="{{ product_list_url }}">Products{% if request.path == product_list_url %}<span class="sr-only">(current)</span>{% endif %}</a>
+
+      </div>
+      <div class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.full_name}}</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item {% if request.path == account_url %}active{% endif %}" href="{{ account_url }}">Account</a>
+            <a class="dropdown-item {% if request.path == order_url %}active{% endif %}" href="{{ order_url }}">Orders</a> 
+            <a class="dropdown-item {% if request.path == email_settings %}active{% endif %}" href="{{email_settings}}">Change Email Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
+          </div>
+        </div>
+        {% else %}
+        <a class="nav-item nav-link {% if request.path == login_url %}active{% endif %}" href="{{ login_url }}">Login{% if request.path == login_url %}<span class="sr-only">(current)</span>{% endif %}</a>
+        <a class="nav-item nav-link {% if request.path == register_url %}active{% endif %}" href="{{ register_url }}">Register{% if request.path == register_url %}<span class="sr-only">(current)</span>{% endif %}</a>
+        {% endif %}
+        <a class="nav-item nav-link {% if request.path == cart_url %}active{% endif %}" href="{{ cart_url }}">
+            <i class="fas fa-shopping-cart"></i>(<span id="navbar-cart-count">{{ request.session.cart_items }}</span>)
+            {% if request.path == cart_url %}
+            <span class="sr-only">(current)</span>{% endif %}
+        </a>
+      </div>
+      {% include "base/search-form.html" %}
+    </div>
+  </div>
+</nav>
+

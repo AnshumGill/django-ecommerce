@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if cart.products.all %}
+<div class="table-responsive">
+<table class="table table-hover" id="cart-table">
+    <thead style="background: #fae3d9;">
+        <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Product Price</th>
+            <th>Size</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody id="cart-body">
+        {% for product in cart.products.all %}
+            <tr id="cart-products">
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                    <div class="row">
+                          {% if product.image %}
+                            <div class="col-sm-6 col-md-3">
+                                <a href="{{product.get_absolute_url}}" style="text-decoration:none; color:inherit;">
+                                  <img src="{{product.image.url}}" class="img-thumbnail float-left"/>
+                                </a>
+                            </div>
+                          {% endif %}
+                            <div class="col-sm-6 col-md-9"> 
+                                <p>
+                                    <a href="{{product.get_absolute_url}}" style="text-decoration:none; color:inherit;">
+                                      {{ product.title }}<br/>
+                                    </a>
+                                    {% for k,v in cart.variations.items %}
+                                        {% ifequal product.title k %}
+                                            {% if v.message %}
+                                                <small class="form-text text-muted">
+                                                    "{{ v.message }}"
+                                                </small>
+                                            {% endif %}
+                                        {% endifequal %}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                </td>
+                <td>&#8377;{{ product.price }}</td>
+                <td>
+                    {% for k,v in cart.variations.items %}
+                        {% ifequal product.title k %}
+                            <p>{{ v.variation }}kg</p>
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for k,v in cart.variations.items %}
+                        {% ifequal product.title k %}
+                            <p>{{ v.quantity }}</p>
+                        {% endifequal %}
+                    {% endfor %}
+                    {% include 'base/remove-product.html' with product_id=product.id %}
+                    {% include 'base/add-product.html' with product_id=product.id %}
+                </td>
+            </tr>
+        {% endfor %}
+      <tr>
+          <td colspan="3"></td>
+          <td><b>Subtotal</b></td>
+          <td><span id="cart-subtotal">&#8377;{{ cart.subtotal }}</span></td>
+      </tr>
+      <tr>
+          <td colspan="3"></td>
+          <td><b>Total</b></td>
+          <td><span id="cart-total">&#8377;{{ cart.total }}</span></td>
+      </tr>
+      <tr>
+          <td colspan="3"></td>
+          <td><a href="{% url "cart:checkout" %}" role="button" class="btn btn-success">Checkout</a> </td>
+          <td></td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+{% else %}
+  <p class="lead">
+      Cart is Empty
+  </p>
+{% endif %}
+
+
+{% endblock %}

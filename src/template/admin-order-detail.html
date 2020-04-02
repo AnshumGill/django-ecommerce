@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="btn btn-info" href="{% url 'accounts:admin-site' %}"><i class="fas fa-arrow-left"></i> Back</a></button>
+<h1 class="display-4">Order Details</h1>
+<hr />
+<table class="table table-borderless table-sm table-responsive-md mx-auto">
+	<tbody>
+		<tr>
+			<td>Order ID</td>
+			<td>{{ order.order_id }}</td>
+		</tr>
+		<tr>
+			<td>Phone Number</td>
+			<td>{{ order.billing_profile }}</td>
+		</tr>
+		<tr>
+			<td>Shipping Address</td>
+			<td>{{ order.shipping_address.get_address }}</td>
+		</tr>
+		<tr>
+			<td>Payemnt ID</td>
+			<td>{{ order.payment_id }}</td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td>
+				{{ order.status }}<br/>
+				<form method="POST" action="">{% csrf_token %}
+					<div class="form-check form-check-inline">
+						{{form.status.0}}
+					</div>
+					<div class="form-check form-check-inline">
+						{{form.status.1}}
+					</div>
+					<div class="form-check form-check-inline">
+						{{form.status.2}}
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-sm">Change</button>
+					</div>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>Date/Time of Order</td>
+			<td>{{ order.timestamp }}</td>
+		</tr>
+		<tr>
+			<td>Shipping Fees</td>
+			<td>&#8377;{{ order.shipping_total }}</td>
+		</tr>
+		<tr>
+			<td>Active</td>
+			<td>{{ order.active }}</td>
+		</tr>
+		<tr>
+			<td><b>Subtotal</b></td>
+			<td><span id="cart-subtotal">&#8377;{{ order.cart.subtotal }}</span></td>
+		</tr>
+		<tr>
+			<td><b>Total</b></td>
+			<td><span id="cart-total">&#8377;{{ order.total }}</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<table class="table table-hover table-responsive-md mx-auto" style="width:80%;">
+	<thead style="background: #ff6775;">
+		<tr>
+		    <th></th>
+		    <th>Product</th>
+		    <th>Product Price</th>
+		    <th>Quantity</th>
+		    <th>Size</th>
+		    <th>Message</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for product in order.cart.products.all %}
+			<tr id="cart-products">
+				<th scope="row">{{ forloop.counter }}</th>
+				{% if product.image %}<td><img src="{{ product.image.url }}" class="img-thumbnail" style="max-width:20%;max-height:20%;"/> {{ product.title }}</td>{% endif %}
+				<td>&#8377;{{ product.price }}</td>
+				<td>
+					{% for k,v in order.cart.variations.items %}
+                        {% ifequal product.title k %}
+                            <p>{{ v.quantity }}</p>
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+                <td>
+                	{% for k,v in order.cart.variations.items %}
+                        {% ifequal product.title k %}
+                            <p>{{ v.variation }}kg</p>
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+                <td>
+                	{% for k,v in order.cart.variations.items %}
+                        {% ifequal product.title k %}
+                            <p>{{ v.message }}</p>
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+			</tr>
+		{% endfor %}
+		
+	</tbody>
+</table>
+
+{% endblock %}

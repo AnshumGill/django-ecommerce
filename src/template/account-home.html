@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-12">
+	<h1 class="display-4">Account</h1>
+	<hr />
+</div>
+<div class="row">
+	<div class="col-12 col-md-4 my-3">
+		<div class="card" style="background: #fae3d9;">
+			<div class="card-body">
+				<h5 class="card-title">Support</h5>
+			</div>
+			<div class="list-group-flush">
+				<a class="list-group-item" href="">About</a>
+				<a class="list-group-item" href="{% url 'contact' %}">Contact</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-md-4 my-3">
+		<div class="card" style="background: #fae3d9;">
+			<div class="card-body">
+				<h5 class="card-title">Personal Information</h5>
+				
+			</div>
+			<div class="list-group-flush">
+				<a class="list-group-item" href="{% url 'account:user-update' %}">Edit Personal Details</a>
+				<a class="list-group-item" href="{% url 'account:user-address' %}">Edit Addresses</a>
+				<a class="list-group-item" href="{% url 'account:order' %}">View Orders</a>
+				<a class="list-group-item" href="{% url 'password_change' %}">Change Password</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-md-4 my-3">
+		<div class="card" style="background: #fae3d9;">
+			<div class="card-body">
+				<h5 class="card-title">Email Settings</h5>
+			</div>
+			<div class="list-group-flush">
+				<a class="list-group-item" href="{% url 'marketing-pref' %}">Change newsletter settings</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

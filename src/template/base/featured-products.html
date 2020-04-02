@@ -1,0 +1,8 @@
+<div class="row">
+  {% for obj in product_list %}
+	  <div class="col-sm-6 col-md-4 col-lg-3">
+	    {% include 'base/featured-card.html' with instance=obj %}
+	  </div>
+  {% endfor %}
+</div>
+

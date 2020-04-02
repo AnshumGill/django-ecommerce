@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<button type="button" class="btn btn-info" onClick="javascript:history.go(-1);"><i class="fas fa-arrow-left"></i> Back</button>
+<p></p>
+<table class="table table-hover table-responsive-md mx-auto" id="order-table" style="width: 80%;">
+      <thead style="background: #fae3d9;">
+        <tr>
+            <th>Order ID</th>
+            <th>Products</th>
+            <th>Order Total</th>
+        </tr>
+      </thead>
+      <tbody id="order-body">
+      	{% for i in cart %}
+      	<tr>
+      		<td><a href="{{ i.get_absolute_url }}" style="text-decoration:inherit;color:inherit;">{{ i.order_id }}</a></td>
+      		
+      		<td>
+      			<a href="{{ i.get_absolute_url }}" style="text-decoration:inherit;color:inherit;">
+				{% for product in i.cart.products.all %}
+                              <div class="row">
+                                    {% if product.image %}
+                                    <div class="col-sm-6 col-md-3">
+                                          <img src="{{ product.image.url }}" class="img-thumbnail"/>
+                                    </div>
+                                    {% endif %}
+                                    <div class="col-sm-6 col-md-9">
+                                          {{product.title}}
+                                    </div>
+                              </div>
+			  	{% endfor %}
+				
+				</a>
+      		</td>	
+      		<td>&#8377;{{ i.total }}</td>
+
+      	</tr>
+      	{% endfor %}
+      </tbody>
+</table>
+
+
+{% endblock %}

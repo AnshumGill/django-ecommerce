@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block content %}
+<button type="button" class="btn btn-info" onClick="javascript:history.go(-1);"><i class="fas fa-arrow-left"></i> Back</button>
+<h1 class="display-4">Order Details</h1>
+<hr />
+<table class="table table-borderless table-sm table-responsive-md mx-auto">
+	<tbody>
+		<tr>
+			<td>Order ID</td>
+			<td>{{ order.order_id }}</td>
+		</tr>
+		<tr>
+			<td>Phone Number</td>
+			<td>{{ order.billing_profile }}</td>
+		</tr>
+		<tr>
+			<td>Shipping Address</td>
+			<td>{{ order.shipping_address.get_address }}</td>
+		</tr>
+		<tr>
+			<td>Payemnt ID</td>
+			<td>{{ order.payment_id }}</td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td>
+				{{ order.status }}<br/>
+				{% ifequal order.status "created" %}				
+					<button class="btn btn-info" id="rzp-button1">Pay</button>
+				{% endifequal %}
+			</td>
+		</tr>
+		<tr>
+			<td>Date/Time of Order</td>
+			<td>{{ order.timestamp }}</td>
+		</tr>
+		<tr>
+			<td>Shipping Fees</td>
+			<td>&#8377;{{ order.shipping_total }}</td>
+		</tr>
+	</tbody>
+</table>
+
+<table class="table table-hover table-responsive-md mx-auto" style="width:80%;">
+	<thead style="background: #fae3d9;">
+		<tr>
+		    <th></th>
+		    <th>Product</th>
+		    <th>Product Price</th>
+		    <th>Quantity</th>
+		    <th>Size</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for product in order.cart.products.all %}
+			<tr>
+				<th scope="row">{{ forloop.counter }}</th>
+				<td>
+                    
+                        <div class="row">
+                        	{% if product.image %}
+                            <div class="col-sm-6 col-md-3">
+                                <a href="{{product.get_absolute_url}}" style="text-decoration:none; color:inherit;">
+                                	<img src="{{product.image.url}}" class="img-thumbnail float-left"/>
+                                </a>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-6 col-md-9"> 
+                                <p>
+                                    <a href="{{product.get_absolute_url}}" style="text-decoration:none; color:inherit;">
+                                    	{{ product.title }}<br/>
+                                    </a>
+                                    {% for k,v in cart.variations.items %}
+                                        {% ifequal product.title k %}
+                                            {% if v.message %}
+                                                <small class="form-text text-muted">
+                                                    "{{ v.message }}"
+                                                </small>
+                                            {% endif %}
+                                        {% endifequal %}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                </td>
+				<td>&#8377;{{ product.price }}</td>
+				<td>
+					{% for k,v in order.cart.variations.items %}
+                        {% ifequal product.title k %}
+                            <p>{{ v.quantity }}</p>
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+                <td>
+                	{% for k,v in order.cart.variations.items %}
+                        {% ifequal product.title k %}
+                            <p>{{ v.variation }}kg</p>
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+			</tr>
+		{% endfor %}
+		<tr>
+			<td colspan="3"></td>
+			<td><b>Subtotal</b></td>
+			<td><span id="cart-subtotal">&#8377;{{ order.cart.subtotal }}</span></td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td><b>Total</b></td>
+			<td><span id="cart-total">&#8377;{{ order.total }}</span></td>
+		</tr>
+	</tbody>
+</table>
+
+{% ifequal order.status "created" %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+		var options = {
+			"key": "rzp_test_t7irdtYoVGUAg1",
+			"amount": {{ order.total }}*100,
+			"name": "Box of Happiness",
+			"description": "{{ order.order_id }}",
+			"image": "/your_logo.png",
+			"handler": function (response){
+			  var paymentid=response.razorpay_payment_id;
+			  	$.ajax({
+				    type:"POST",
+				    url:"/cart/checkout/success",
+				    data:{
+				    	payment_id:paymentid,
+				    	order_id:"{{ order.order_id }}",
+			    	},
+			    	success: function(){
+			    		window.location.href="/cart/checkout/success"
+			    	},
+			    	error: function(errorData){
+						console.log(errorData)
+						$.alert({
+							title: "Oops!",
+							content: "Some Error Occured. Please try again",
+							theme: "material",
+						})
+				    }
+			  	})
+		  	},
+		  	"modal": {
+		    	"ondismiss": function(){}
+		  	},
+		  	"external": {
+		    	wallets: ['paytm']
+		  	},
+		  	"notes": {
+		    	"Mobile": "Mobile={{ object.billing_profile }}"
+		  	},
+		  	"theme": {
+		    	"color": "#F37254"
+		  	}
+		};
+		var rzp1 = new Razorpay(options);
+		document.getElementById('rzp-button1').onclick = function(e){
+			rzp1.open();
+			e.preventDefault();
+		};
+</script>
+
+{% endifequal %}
+
+
+{% endblock %}

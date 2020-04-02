@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-hover table-responsive-md mx-auto" id="order-table" style="width: 80%;">
+      <thead style="background: #ffdfba;">
+        <tr>
+            <th>Order ID</th>
+            <th>Products</th>
+            <th>Order Total</th>
+            <th>Date/Time</th>
+        </tr>
+      </thead>
+      <tbody id="order-body">
+      	{% for i in orders %}
+      	<tr>
+      		<td><a href="{{ i.get_absolute_url_admin }}" style="text-decoration:inherit;color:inherit;">{{ i.order_id }}</a></td>
+      		
+      		<td>
+      			<a href="{{ i.get_absolute_url_admin }}" style="text-decoration:inherit;color:inherit;">
+      			<ul class="list-group list-group-flush">
+      				{% for product in i.cart.products.all %}
+				  		<li class="list-group-item">
+				  			{{ product.title }}<br />
+				  			{% for k,v in i.cart.variations.items %}
+                                {% ifequal product.title k %}
+                                    Quantity:{{ v.quantity }}
+									Size:{{ v.variation }}
+									Message:{{ v.message }}
+                                {% endifequal %}
+                            {% endfor %}
+				  		</li>
+				  	{% endfor %}
+				</ul>
+				</a>
+      		</td>	
+      		<td>&#8377;{{ i.total }}</td>
+      		<td>{{ i.timestamp }}</td>
+
+      	</tr>
+      	{% endfor %}
+      </tbody>
+</table>
+
+
+{% endblock %}
